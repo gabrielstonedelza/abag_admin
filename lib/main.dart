@@ -1,6 +1,5 @@
 import 'package:abag_admin/homepage.dart';
 import 'package:abag_admin/registration/registration.dart';
-import 'package:abag_admin/success/success.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
@@ -28,7 +27,6 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/", page: ()=> const MySplashScreen()),
         GetPage(name: "/homepage", page: ()=> const HomePage()),
         GetPage(name: "/registration", page: ()=> const AgentRegistration()),
-        GetPage(name: "/success", page: ()=> const RegistrationSuccess()),
       ],
     );
   }

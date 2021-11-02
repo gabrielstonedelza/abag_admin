@@ -1,7 +1,6 @@
 import 'dart:async';
-
 import 'package:abag_admin/constants.dart';
-import 'package:abag_admin/success/success.dart';
+import 'package:abag_admin/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -20,7 +19,7 @@ class _AgentRegistrationState extends State<AgentRegistration> {
       accountSid:
           'ACee3d49ac95619266253a5b3149c2dfb5', // replace *** with Account SID
       authToken:
-          '456bc9566085dcd22ac44645b514460c', // replace xxx with Auth Token
+          '75b2e47812e26bf293a1a60099e9be8c', // replace xxx with Auth Token
       twilioNumber: '+1 408 556 9136' // replace .... with Twilio Number
       );
   final _formKey = GlobalKey<FormState>();
@@ -48,6 +47,9 @@ class _AgentRegistrationState extends State<AgentRegistration> {
   late final TextEditingController _agentCode = TextEditingController();
   late final TextEditingController _userPassword = TextEditingController();
   late final TextEditingController _userRePassword = TextEditingController();
+  late List users = [];
+  bool userExists = false;
+  late List userNumbers = [];
 
 
   validateForm(String message) {
@@ -104,12 +106,12 @@ class _AgentRegistrationState extends State<AgentRegistration> {
           onPressed: () {},
         ),
       ));
-    Timer(const Duration(seconds: 5),() => Get.offAll(()=> const RegistrationSuccess()));
+    twilioFlutter.sendSMS(
+        toNumber: '+233$dnum',
+        messageBody:
+        'Welcome ${_userCompany.text}, you are now registered on ABAG System.Your agent code is ${_agentCode.text} and your password is ${_userPassword.text}.Please click on forgot password at the login page and change your password.For more information please kindly call 0244950505.');
+      Timer(const Duration(seconds: 5),() => Get.offAll(()=> const HomePage()));
 
-      twilioFlutter.sendSMS(
-          toNumber: '+233$dnum',
-          messageBody:
-              'Welcome ${_userCompany.text}, you are now registered on ABAG System.Your agent code is ${_agentCode.text} and your password is ${_userPassword.text}.Please click on forgot password at the login page and change your password.For more information please kindly call 0244950505.');
     }
     if (res.statusCode == 400) {
       setState(() {
