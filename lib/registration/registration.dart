@@ -17,9 +17,9 @@ class AgentRegistration extends StatefulWidget {
 class _AgentRegistrationState extends State<AgentRegistration> {
   late TwilioFlutter twilioFlutter = TwilioFlutter(
       accountSid:
-          'ACee3d49ac95619266253a5b3149c2dfb5', // replace *** with Account SID
+          '', // replace *** with Account SID
       authToken:
-          '75b2e47812e26bf293a1a60099e9be8c', // replace xxx with Auth Token
+          '', // replace xxx with Auth Token
       twilioNumber: '+1 408 556 9136' // replace .... with Twilio Number
       );
   final _formKey = GlobalKey<FormState>();
